@@ -100,4 +100,4 @@ A completed pipeline would look like this:
 ### Pipeline execution 
 <img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline.png?raw=true">
 
-PS: I reused the code related to codebuild/pipeline from https://github.com/davoclock/aws-cicd-pipeline and modified it to use AWS codecommit as the source and use AWS secret manager to set environmental vars in the buildspec yml files.
+PS: I reused the code related to codebuild/pipeline from https://github.com/davoclock/aws-cicd-pipeline and modified it to use AWS codecommit as the source and use AWS secret manager to set environmental vars in the buildspec yml files. I also added an approval stage to use SNS notifications to alert the user.
