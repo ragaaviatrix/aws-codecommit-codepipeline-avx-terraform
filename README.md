@@ -95,3 +95,7 @@ Push the code to the repo and the pipeline will automatically trigger in a few m
 ## Step 6
 
 After manual approval, the pipeline would proceed to deploy the resources and finish successfully
+
+A completed pipeline would look like this:
+### Pipeline execution 
+<img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline.png?raw=true">
