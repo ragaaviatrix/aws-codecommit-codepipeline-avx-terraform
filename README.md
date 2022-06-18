@@ -13,6 +13,8 @@ This will create a end to end AWS pipeline deployment. The code will create the 
 
 - Docker hub account https://hub.docker.com/ (A docker image with terraform preinstalled will be used in the codebuild phase)
 - AWS secrets
+- Aviatrix controller deployed and accounts onboarded
+
 >For docker credentials and aviatrix controller credentials
 
 - Once you create an account in docker hub, create a secret in AWS secrets manager with the username and password you used on docker hub
@@ -22,7 +24,7 @@ This will create a end to end AWS pipeline deployment. The code will create the 
 
 - Obtain the arn of the secret you just created
 
-- Create a secret key AVIATRIX_CONTROLLER_IP with the name controller_ip
+- Create a secret key AVIATRIX_CONTROLLER_IP with the name controller_ip. The value is the private IP of the controller.
 >These will be used as environment variables to login to the controller later during the build stage
 
 ### Secret for controller_ip
