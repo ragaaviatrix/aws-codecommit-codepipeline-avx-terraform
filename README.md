@@ -11,9 +11,9 @@ This will create a end to end AWS pipeline deployment. The code will create the 
 
 # Prerequisites
 
+- Aviatrix controller deployed and accounts onboarded
 - Docker hub account https://hub.docker.com/ (A docker image with terraform preinstalled will be used in the codebuild phase)
 - AWS secrets
-- Aviatrix controller deployed and accounts onboarded
 
 >For docker credentials and aviatrix controller credentials
 
