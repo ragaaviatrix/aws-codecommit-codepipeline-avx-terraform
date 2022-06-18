@@ -4,8 +4,9 @@ This will create a end to end AWS pipeline deployment. The code will create the 
 
 - S3 backend for aviatrix resources
 - CodeCommit repo to store aviatrix terraform code. The will also output the username, password and https git clone url to clone the repo to your local machine
-- CodeBuild projects for terraform plan and apply
-- CodePipeline (with manual approval to prevent auto-apply) to deploy avaitrix resources 
+- Creation of a SG, private subnet, route table for codebuild. EIP for NAT gw.
+- CodeBuild projects for terraform plan and apply, creation and deletion of NAT gateway during deployment
+- CodePipeline (with manual approval to prevent auto-apply) to deploy avaitrix resources
 
 
 # Prerequisites
@@ -49,6 +50,12 @@ dockerhub_credentials             | ARN of the secret created initially
 sns_subscription_email_id         |
 sns_topic_name                    |
 tfstate_filename |
+codebuild_az                      | "eu-west-1a"
+avtx_ctrl_vpc_id                  | "vpc-082f55ce6f7636247"
+codebuild_cidr_block              | "10.41.245.32/28"
+subnet_id_for_NATgw               | Public subnet to deploy NAT gw
+AviatrixSecurityGroupID           | "sg-0093029b7aabb3ca8"
+
 
 # How to use
 
@@ -100,4 +107,4 @@ A completed pipeline would look like this:
 ### Pipeline execution 
 <img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline.png?raw=true">
 
-PS: I reused the code related to codebuild/pipeline from https://github.com/davoclock/aws-cicd-pipeline and modified it to use AWS codecommit as the source and use AWS secret manager to set environmental vars in the buildspec yml files. I also added an approval stage to use SNS notifications to alert the user.
+PS: I reused the base code related to codebuild/pipeline from https://github.com/davoclock/aws-cicd-pipeline and modified it to use AWS codecommit as the source and use AWS secret manager to set environmental vars in the buildspec yml files. I added an approval stage to use SNS notifications to alert the user. I also added additional codebuild projects to create and delete NAT gateway and corresponding codepipeline stages during the workflow. 
