@@ -39,3 +39,15 @@ variable "sns_topic_name" {
 variable "tfstate_filename" {
   
 }
+
+variable "codebuild_az" {}
+variable "avtx_ctrl_vpc_id" {}
+variable "codebuild_cidr_block" {}
+
+variable "subnet_id_for_NATgw" {
+  
+}
+
+variable "AviatrixSecurityGroupID" {
+  
+}
