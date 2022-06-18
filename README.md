@@ -107,6 +107,7 @@ After manual approval, the pipeline would proceed to deploy the resources and fi
 
 A completed pipeline would look like this:
 ### Pipeline execution 
-<img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline.png?raw=true">
+<img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline_output1.png?raw=true">
+<img src="https://github.com/ragaaviatrix/aws-codecommit-codepipeline-avx-terraform/blob/main/img/pipeline_output2.png?raw=true">
 
 PS: I reused the base code related to codebuild/pipeline from https://github.com/davoclock/aws-cicd-pipeline and modified it to use AWS codecommit as the source and use AWS secret manager to set environmental vars in the buildspec yml files. I added an approval stage to use SNS notifications to alert the user. I also added additional codebuild projects to create and delete NAT gateway and corresponding codepipeline stages during the workflow. 
