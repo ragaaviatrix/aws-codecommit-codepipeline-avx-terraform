@@ -2,10 +2,28 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - aws ec2 create-nat-gateway --subnet-id $subnet_id_for_NATgw --allocation-id $eip_alloc_id --tag-specifications 'ResourceType=natgateway, Tags=[{Key=Name,Value=NATGWforcodebuild}]'
-      - NATGATEWAY_ID=$(aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=NATGWforcodebuild"  --query "NatGateways[].NatGatewayId" --output text)
-      - sleep 120
-  
-  build:
-    commands:
-      - aws ec2 create-route --route-table-id  $route_table_id --destination-cidr-block 0.0.0.0/0 --gateway-id $NATGATEWAY_ID
+      - printf '+%.0s' {1..51}
+      - echo -e "\n"
+      - echo "Checking if NAT gateway has been deployed already"
+      - printf '+%.0s' {1..51}
+      - echo -e "\n"
+      - |
+        command=$(aws ec2 describe-nat-gateways --filter "Name=state,Values=available" --query "NatGateways[].NatGatewayId" --output text)
+        if [[ -n $command ]]; then
+          printf '+%.0s' {1..51}
+          echo -e "\n"
+          echo "NAT gateway is available; Not deploying a new one"
+          printf '+%.0s' {1..51}
+          echo -e "\n"
+        else
+          printf '+%.0s' {1..51}
+          echo -e "\n"
+          echo "NAT gateway is not available; Deploying a new one"
+          printf '+%.0s' {1..51}
+          echo -e "\n"
+          
+          aws ec2 create-nat-gateway --subnet-id $subnet_id_for_NATgw --allocation-id $eip_alloc_id --tag-specifications 'ResourceType=natgateway, Tags=[{Key=Name,Value=NATGWforcodebuild}]'
+          NATGATEWAY_ID=$(aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=NATGWforcodebuild"  --query "NatGateways[].NatGatewayId" --output text)
+          sleep 120
+          aws ec2 create-route --route-table-id  $route_table_id --destination-cidr-block 0.0.0.0/0 --gateway-id $NATGATEWAY_ID
+        fi
