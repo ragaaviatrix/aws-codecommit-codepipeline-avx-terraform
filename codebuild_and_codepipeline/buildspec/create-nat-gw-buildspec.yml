@@ -2,11 +2,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - printf '+%.0s' {1..51}
-      - echo -e "\n"
-      - echo "Checking if NAT gateway has been deployed already"
-      - printf '+%.0s' {1..51}
-      - echo -e "\n"
+      - echo "+++++++++++ Checking if NAT gateway has been deployed already +++++++++++"
       - |
         command=$(aws ec2 describe-nat-gateways --filter "Name=state,Values=available" --query "NatGateways[].NatGatewayId" --output text)
         if [[ -n $command ]]; then
