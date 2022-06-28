@@ -2,7 +2,7 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - NATGATEWAY_ID=$(aws ec2 describe-nat-gateways --filter "Name=tag:Name,Values=NATGWforcodebuild"  --query "NatGateways[].NatGatewayId" --output text)
+      - NATGATEWAY_ID=$(aws ec2 describe-nat-gateways --filter "Name=state,Values=available"  --query "NatGateways[].NatGatewayId" --output text)
   
   build:
     commands:
