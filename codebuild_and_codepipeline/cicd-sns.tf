@@ -1,5 +1,5 @@
 resource "aws_sns_topic" "approval_alerts" {
-  name            = var.topic_name
+  name = var.topic_name
 }
 
 resource "aws_sns_topic_subscription" "approval_alerts_email_target" {

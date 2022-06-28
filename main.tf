@@ -17,17 +17,17 @@ module "create_repo" {
 
 #create codebuild projects and codepipeline
 module "codebuild_codepipeline" {
-  source                = "./codebuild_and_codepipeline"
-  codebuild_az          = var.codebuild_az
-  avtx_ctrl_vpc         = var.avtx_ctrl_vpc_id
-  codebuild_cidr_block  = var.codebuild_cidr_block
-  subnet_id_for_NATgw   = var.subnet_id_for_NATgw
+  source                  = "./codebuild_and_codepipeline"
+  codebuild_az            = var.codebuild_az
+  avtx_ctrl_vpc           = var.avtx_ctrl_vpc_id
+  codebuild_cidr_block    = var.codebuild_cidr_block
+  subnet_id_for_NATgw     = var.subnet_id_for_NATgw
   AviatrixSecurityGroupID = var.AviatrixSecurityGroupID
-  pipeline_s3_bucket    = var.pipeline_s3_bucket
-  codecommit_repo_name  = var.codecommit_repository_name
-  dockerhub_credentials = var.dockerhub_credentials
-  email_id              = var.sns_subscription_email_id
-  topic_name            = var.sns_topic_name
+  pipeline_s3_bucket      = var.pipeline_s3_bucket
+  codecommit_repo_name    = var.codecommit_repository_name
+  dockerhub_credentials   = var.dockerhub_credentials
+  email_id                = var.sns_subscription_email_id
+  topic_name              = var.sns_topic_name
   depends_on = [
     module.create_repo
   ]

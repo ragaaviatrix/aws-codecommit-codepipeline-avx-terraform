@@ -29,7 +29,7 @@ resource "aws_codebuild_project" "create-nat-gw" {
     environment_variable {
       name  = "route_table_id"
       value = aws_route_table.rt_for_codebuild.id
-    }    
+    }
 
 
   }
@@ -61,8 +61,8 @@ resource "aws_codebuild_project" "delete-nat-gw" {
     environment_variable {
       name  = "route_table_id"
       value = aws_route_table.rt_for_codebuild.id
-    } 
-    
+    }
+
   }
   source {
     type      = "CODEPIPELINE"
@@ -146,7 +146,7 @@ resource "aws_codebuild_project" "tf-apply" {
 }
 
 
-resource "aws_codepipeline" "cicd_pipeline" {       
+resource "aws_codepipeline" "cicd_pipeline" {
 
   name     = "tf-cicd"
   role_arn = aws_iam_role.tf-codepipeline-role.arn
