@@ -1,7 +1,7 @@
 variable "tfstate_s3_bucket_name" {
 
 }
-variable "tfstate_dynamod_db_table_name" {
+variable "tfstate_dynamo_db_table_name" {
 
 }
 variable "tfstate_s3_bucket_region" {

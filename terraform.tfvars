@@ -1,5 +1,5 @@
 tfstate_s3_bucket_name            = "avx-15062022-s3-bucket"
-tfstate_dynamod_db_table_name     = "avx-dynamodb-table"
+tfstate_dynamo_db_table_name      = "avx-dynamodb-table"
 tfstate_s3_bucket_region          = "eu-west-1"
 codecommit_iam_group_name         = "codecommit-tf-users"
 codecommit_iam_user_name          = "codecommit-iam-user"

@@ -2,7 +2,7 @@
 module "tfstate_s3_backend" {
   source               = "./s3-backend"
   name_of_s3_bucket    = var.tfstate_s3_bucket_name
-  dynamo_db_table_name = var.tfstate_dynamod_db_table_name
+  dynamo_db_table_name = var.tfstate_dynamo_db_table_name
   s3_bucket_region     = var.tfstate_s3_bucket_region
 }
 
@@ -41,7 +41,7 @@ resource "local_file" "s3_backend" {
         bucket         = "${var.tfstate_s3_bucket_name}"
         region         = "${var.tfstate_s3_bucket_region}"
         key            = "${var.tfstate_filename}"
-        dynamodb_table = "${var.tfstate_dynamod_db_table_name}"
+        dynamodb_table = "${var.tfstate_dynamo_db_table_name}"
       }
     }
     EOT
